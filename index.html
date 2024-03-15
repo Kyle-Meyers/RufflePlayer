@@ -16,15 +16,23 @@
         <option value="swf-files/Wonderputt.swf">Wonderputt</option>
     </select>  
   <script>
-    window.RufflePlayer = window.RufflePlayer || {};
-    
-    window.addEventListener("DOMContentLoaded", () => {
-      let ruffle = window.RufflePlayer.newest();
-      let player = ruffle.createPlayer();
-      let container = document.getElementById("container");
-      container.appendChild(player);
-      player.load(document.getElementById("game").value);
+    var dropdown = document.getElementByID("game");
+    dropdown.addEventListener("change", function() {
+        var game = dropdown.value;
+        ruffle(game);
     });
+
+    function ruffle(game) {
+      window.RufflePlayer = window.RufflePlayer || {};
+      
+      window.addEventListener("DOMContentLoaded", () => {
+        let ruffle = window.RufflePlayer.newest();
+        let player = ruffle.createPlayer();
+        let container = document.getElementById("container");
+        container.appendChild(player);
+        player.load(game);
+      });
+    }
   </script>
   <script src="ruffle-nightly-2024_03_14-web-selfhosted/ruffle.js"></script>
 </body>
