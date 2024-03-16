@@ -15,17 +15,28 @@
         <option value="swf-files/Achievement Unlocked 2.swf">Achievement Unlocked 2</option> 
         <option value="swf-files/Wonderputt.swf">Wonderputt</option>
     </select>  
+  
   <script>
-    window.RufflePlayer = window.RufflePlayer || {};
-    
-    window.addEventListener("DOMContentLoaded", () => {
-      let ruffle = window.RufflePlayer.newest();
-      let player = ruffle.createPlayer();
-      let container = document.getElementById("container");
-      container.appendChild(player);
-      player.load(document.getElementById("game").value);
-    });
+  function loadGame() {
+    var selector = document.getElementById("game");
+    var selectedGame = selector.options[selector.selectedIndex].value;
+
+    var ruffleContainer = document.getElementById("container");
+    ruffleContainer.innerHTML = ""; // Clear previous content
+
+    var ruffleScript = document.createElement("script");
+    ruffleScript.src = "ruffle-nightly-2024_03_14-web-selfhosted/ruffle.js";
+    ruffleScript.onload = function() {
+      var rufflePlayer = RufflePlayer.newest().createPlayer();
+      ruffleContainer.appendChild(rufflePlayer);
+      rufflePlayer.load(selectedGame);
+    };
+
+    ruffleContainer.appendChild(ruffleScript);
+  }
+
+  document.getElementById("game").addEventListener("change", loadGame);
+  loadGame(); // Load the initial game
   </script>
-  <script src="ruffle-nightly-2024_03_14-web-selfhosted/ruffle.js"></script>
 </body>
 </html>
