@@ -7,78 +7,85 @@
   <title>Flash!</title>
   <style>
     body {
-      background-color: #1f1f1f; /* Dark mode background color */
-      color: #ffffff; /* Dark mode text color */
+      background-color: #1f1f1f;
+      color: #ffffff;
       font-family: Arial, sans-serif;
     }
     select {
-      padding: 10px;
-      font-size: 16px;
+      padding: 5px;
+      font-size: 12px;
       border-radius: 5px;
       border: 1px solid #ccc;
-      background-color: #333; /* Dark mode dropdown background color */
-      color: #ffffff; /* Dark mode dropdown text color */
+      background-color: #333;
+      color: #ffffff;
+      margin-left: 10px;
     }
     select option {
-      background-color: #333; /* Dark mode dropdown option background color */
-      color: #ffffff; /* Dark mode dropdown option text color */
+      background-color: #333;
+      color: #ffffff;
     }
     label {
-      display: block;
+      display: inline-block;
       margin-bottom: 10px;
+      font-size: 14px;
+    }
+    p {
+      font-size: 14px;
+      margin-top: 10px;
+      color: #ccc;
     }
   </style>
 </head>
 
-<body>
-  <div id="container"></div>
-  <label for="game">Choose a game to play:</label> 
-    <select name="game" id="game"> 
-        <option value="swf-files/achievement-unlocked.swf">Achievement Unlocked</option> 
-        <option value="swf-files/achievement-unlocked-2.swf">Achievement Unlocked 2</option> 
-        <option value="swf-files/cat-ninja.swf">Cat Ninja</option>
-        <option value="swf-files/duck-life-1.swf">Duck Life 1</option>
-        <option value="swf-files/duck-life-2.swf">Duck Life 2</option>
-        <option value="swf-files/duck-life-3.swf">Duck Life 3</option>
-        <option value="swf-files/papas-burgeria.swf">Papa's Burgeria</option>
-        <option value="swf-files/papas-donuteria.swf">Papa's Donuteria</option>
-        <option value="swf-files/papas-freezeria.swf">Papa's Freezeria</option>
-        <option value="swf-files/papas-pastaria.swf">Papa's Pastaria</option>
-        <option value="swf-files/papas-pizzeria.swf">Papa's Pizzeria</option>
-        <option value="swf-files/papas-sushiria.swf">Papa's Sushiria</option>
-        <option value="swf-files/papas-taco-mia.swf">Papa's Taco Mia</option>
-        <option value="swf-files/papas-wingeria.swf">Papa's Wingeria</option>
-        <option value="swf-files/run-3.swf">Run 3</option>
-        <option value="swf-files/sugar-sugar.swf">Sugar, Sugar</option>
-        <option value="swf-files/sugar-sugar-2.swf">Sugar, Sugar 2</option>
-        <option value="swf-files/impossible-quiz.swf">The Impossible Quiz</option>
-        <option value="swf-files/worlds-hardest-game.swf">The World's Hardest Game</option>
-        <option value="swf-files/wonderputt.swf">Wonderputt</option>
-    </select>  
-  
+  <body>
+    <div id="container"></div>
+    <label for="game">Choose a game to play:</label> 
+      <select name="game" id="game"> 
+          <option value="swf-files/achievement-unlocked.swf">Achievement Unlocked</option> 
+          <option value="swf-files/achievement-unlocked-2.swf">Achievement Unlocked 2</option> 
+          <option value="swf-files/cat-ninja.swf">Cat Ninja</option>
+          <option value="swf-files/duck-life-1.swf">Duck Life 1</option>
+          <option value="swf-files/duck-life-2.swf">Duck Life 2</option>
+          <option value="swf-files/duck-life-3.swf">Duck Life 3</option>
+          <option value="swf-files/papas-burgeria.swf">Papa's Burgeria</option>
+          <option value="swf-files/papas-donuteria.swf">Papa's Donuteria</option>
+          <option value="swf-files/papas-freezeria.swf">Papa's Freezeria</option>
+          <option value="swf-files/papas-pastaria.swf">Papa's Pastaria</option>
+          <option value="swf-files/papas-pizzeria.swf">Papa's Pizzeria</option>
+          <option value="swf-files/papas-sushiria.swf">Papa's Sushiria</option>
+          <option value="swf-files/papas-taco-mia.swf">Papa's Taco Mia</option>
+          <option value="swf-files/papas-wingeria.swf">Papa's Wingeria</option>
+          <option value="swf-files/run-3.swf">Run 3</option>
+          <option value="swf-files/sugar-sugar.swf">Sugar, Sugar</option>
+          <option value="swf-files/sugar-sugar-2.swf">Sugar, Sugar 2</option>
+          <option value="swf-files/impossible-quiz.swf">The Impossible Quiz</option>
+          <option value="swf-files/worlds-hardest-game.swf">The World's Hardest Game</option>
+          <option value="swf-files/wonderputt.swf">Wonderputt</option>
+      </select> 
+
+  <p>Right click the player to go in fullscreen</p>
+    
   <script>
-  function loadGame() {
-    var selector = document.getElementById("game");
-    var selectedGame = selector.options[selector.selectedIndex].value;
-
-    var ruffleContainer = document.getElementById("container");
-    ruffleContainer.innerHTML = ""; // Clear previous content
-
-    var ruffleScript = document.createElement("script");
-    ruffleScript.src = "ruffle-nightly-2024_03_14-web-selfhosted/ruffle.js";
-    ruffleScript.onload = function() {
-      var rufflePlayer = RufflePlayer.newest().createPlayer();
-      rufflePlayer.style.width = "100vw"; 
-      rufflePlayer.style.height = "100vh";
-      ruffleContainer.appendChild(rufflePlayer);
-      rufflePlayer.load(selectedGame);
-    };
-
-    ruffleContainer.appendChild(ruffleScript);
-  }
-
-  document.getElementById("game").addEventListener("change", loadGame);
-  loadGame(); // Load the initial game
+    function loadGame() {
+      var selector = document.getElementById("game");
+      var selectedGame = selector.options[selector.selectedIndex].value;
+  
+      var ruffleContainer = document.getElementById("container");
+      ruffleContainer.innerHTML = ""; // Clear previous content
+  
+      var ruffleScript = document.createElement("script");
+      ruffleScript.src = "ruffle-nightly-2024_03_14-web-selfhosted/ruffle.js";
+      ruffleScript.onload = function() {
+        var rufflePlayer = RufflePlayer.newest().createPlayer();
+        ruffleContainer.appendChild(rufflePlayer);
+        rufflePlayer.load(selectedGame);
+      };
+      
+      ruffleContainer.appendChild(ruffleScript);
+    }
+  
+    document.getElementById("game").addEventListener("change", loadGame);
+    loadGame(); // Load the initial game
   </script>
 </body>
 </html>
