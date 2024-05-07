@@ -4,7 +4,30 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" \>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
+  <title>Flash!</title>
+  <style>
+    body {
+      background-color: #1f1f1f; /* Dark mode background color */
+      color: #ffffff; /* Dark mode text color */
+      font-family: Arial, sans-serif;
+    }
+    select {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      background-color: #333; /* Dark mode dropdown background color */
+      color: #ffffff; /* Dark mode dropdown text color */
+    }
+    select option {
+      background-color: #333; /* Dark mode dropdown option background color */
+      color: #ffffff; /* Dark mode dropdown option text color */
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+  </style>
 </head>
 
 <body>
@@ -45,6 +68,8 @@
     ruffleScript.src = "ruffle-nightly-2024_03_14-web-selfhosted/ruffle.js";
     ruffleScript.onload = function() {
       var rufflePlayer = RufflePlayer.newest().createPlayer();
+      rufflePlayer.style.width = "100vw"; 
+      rufflePlayer.style.height = "100vh";
       ruffleContainer.appendChild(rufflePlayer);
       rufflePlayer.load(selectedGame);
     };
